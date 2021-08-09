@@ -1,5 +1,5 @@
 
-name: Delete workflow runs
+name: Delete workflow
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ jobs:
 
     steps:
 
-    - name: Delete workflow runs
+    - name: Delete workflow
       uses: GitRML/delete-workflow-runs@main
       with:
         retain_days: 1
