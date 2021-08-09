@@ -1,22 +1,14 @@
 
 name: Delete workflow runs
 
-jobs:
-  check:
-    runs-on: ubuntu-latest
-    
-    steps:
-
-name: Update Checker
-
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: openwrt-21.02
 
 on:
   workflow_dispatch:
-#  schedule:
-#    - cron: 0 */18 * * *
+  schedule:
+    - cron: 0 */18 * * *
 
 jobs:
   check:
@@ -29,6 +21,7 @@ jobs:
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH .
         echo "::set-output name=commitHash::$(git rev-parse HEAD)"
+
     - name: Compare Commit Hash
       id: cacheHash
       uses: actions/cache@v2
@@ -40,9 +33,9 @@ jobs:
       if: steps.cacheHash.outputs.cache-hit != 'true'
       run: |
         echo ${{ steps.getHash.outputs.commitHash }} | tee .commitHash
-        
+
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
       with:
-        retain_days: 0
-        keep_minimum_runs: 0
+        retain_days: 1
+        keep_minimum_runs: 1
