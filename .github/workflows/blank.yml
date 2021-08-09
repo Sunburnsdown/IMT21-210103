@@ -1,0 +1,6 @@
+# This is a basic workflow to help you get started with Actions
+    - name: Delete workflow runs
+      uses: GitRML/delete-workflow-runs@main
+      with:
+        retain_days: 2
+        keep_minimum_runs: 5
