@@ -1,10 +1,6 @@
 
 name: Delete workflow runs
 
-#env:
-#  REPO_URL: https://github.com/immortalwrt/immortalwrt
-#  REPO_BRANCH: openwrt-21.02
-
 on:
   workflow_dispatch:
 #  schedule:
